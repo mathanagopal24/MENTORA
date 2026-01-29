@@ -1,0 +1,145 @@
+{
+  "courses": [
+    {
+      "id": "c1",
+      "title": "Frontend Foundations",
+      "description": "HTML, CSS, and JavaScript essentials to build real interfaces.",
+      "lessonTitle": "Your first responsive layout",
+      "lessonBody": "In this lesson, you'll build a simple responsive layout using flexible grids, spacing, and accessible UI patterns. Focus on consistency: typography scale, spacing rhythm, and states (hover/focus/active)."
+    },
+    {
+      "id": "c2",
+      "title": "DSA for Problem Solving",
+      "description": "Core data structures and patterns for coding interviews and contests.",
+      "lessonTitle": "Arrays + Two Pointers",
+      "lessonBody": "Two pointers is a mindset: move boundaries based on conditions. Start with sorted arrays (or sort first), define invariants, and prove correctness."
+    },
+    {
+      "id": "c3",
+      "title": "Git & Career Workflow",
+      "description": "Practical Git, project planning, and portfolio-ready habits.",
+      "lessonTitle": "Commit messages that scale",
+      "lessonBody": "A good commit message explains why. Prefer short summaries, include context, and keep changes logically grouped. Your future self will thank you."
+    }
+  ],
+  "mcqs": [
+    {
+      "id": "m1",
+      "question": "Which HTML element is best for the main navigation links?",
+      "choices": ["<div>", "<nav>", "<span>", "<section>"],
+      "answerIndex": 1,
+      "explain": "<nav> semantically represents navigation links."
+    },
+    {
+      "id": "m2",
+      "question": "What does CSS Flexbox primarily help with?",
+      "choices": ["Database queries", "Layout alignment in one dimension", "Image compression", "Server routing"],
+      "answerIndex": 1,
+      "explain": "Flexbox is great for 1D layout: row OR column alignment."
+    },
+    {
+      "id": "m3",
+      "question": "In JavaScript, which is NOT a primitive type?",
+      "choices": ["string", "number", "object", "boolean"],
+      "answerIndex": 2,
+      "explain": "object is not primitive (primitives include string/number/boolean/bigint/symbol/undefined/null)."
+    }
+  ],
+  "coding": [
+    {
+      "id": "q1",
+      "title": "Reverse a string",
+      "question": "Given a string s, return the reversed string.",
+      "sampleInput": "hello",
+      "sampleOutput": "olleh"
+    },
+    {
+      "id": "q2",
+      "title": "Sum of array",
+      "question": "Given an array of integers, return the sum of all elements.",
+      "sampleInput": "1 2 3 4",
+      "sampleOutput": "10"
+    },
+    {
+      "id": "q3",
+      "title": "Count vowels",
+      "question": "Given a string, count the number of vowels (a, e, i, o, u).",
+      "sampleInput": "Mentora",
+      "sampleOutput": "3"
+    }
+  ],
+  "assessment": {
+    "timeSeconds": 60,
+    "questions": [
+      {
+        "id": "a1",
+        "question": "Which HTTP method is typically used to retrieve data?",
+        "choices": ["GET", "POST", "DELETE", "PATCH"],
+        "answerIndex": 0
+      },
+      {
+        "id": "a2",
+        "question": "Which CSS unit is relative to the root font size?",
+        "choices": ["px", "em", "rem", "%"],
+        "answerIndex": 2
+      },
+      {
+        "id": "a3",
+        "question": "What does LocalStorage store values as?",
+        "choices": ["Numbers", "Objects", "Strings", "Booleans"],
+        "answerIndex": 2
+      },
+      {
+        "id": "a4",
+        "question": "Which of these is a valid JavaScript array method?",
+        "choices": ["push()", "append()", "add()", "insert()"],
+        "answerIndex": 0
+      },
+      {
+        "id": "a5",
+        "question": "Which tag is correct for the largest heading?",
+        "choices": ["<h6>", "<h3>", "<h1>", "<header>"],
+        "answerIndex": 2
+      }
+    ]
+  },
+  "roadmap": [
+    { "id": "r1", "title": "Step 1: Basics", "desc": "HTML semantics, CSS layout, JS fundamentals." },
+    { "id": "r2", "title": "Step 2: Intermediate", "desc": "State management patterns, async JS, tooling basics." },
+    { "id": "r3", "title": "Step 3: Projects", "desc": "Build 2–3 portfolio apps with clean UI and docs." }
+  ],
+  "community": [
+    {
+      "id": "p1",
+      "author": "Aarav",
+      "title": "How do you stay consistent?",
+      "body": "I start strong but lose momentum after a week. Any habits that worked for you?"
+    },
+    {
+      "id": "p2",
+      "author": "Meera",
+      "title": "Best resources for DSA?",
+      "body": "Looking for a structured roadmap and daily practice routine."
+    },
+    {
+      "id": "p3",
+      "author": "Dev",
+      "title": "Sharing my first mini project",
+      "body": "Built a simple notes app in vanilla JS. Would love UI feedback!"
+    }
+  ],
+  "leaderboard": [
+    { "name": "Ishaan", "xp": 980 },
+    { "name": "Sana", "xp": 720 },
+    { "name": "Karthik", "xp": 540 },
+    { "name": "Nila", "xp": 410 }
+  ],
+  "quotes": [
+    "Small steps every day add up to big results.",
+    "Consistency beats intensity when intensity isn’t consistent.",
+    "Learn the basics deeply, then build boldly.",
+    "Progress is proof that you showed up.",
+    "Make it work, make it right, make it fast — in that order."
+  ]
+}
+

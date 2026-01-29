@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MENTORA — Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="app-page">
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="MENTORA navigation">
+        <div class="sidebar__top">
+          <a class="brand" href="#dashboard" aria-label="MENTORA Home">
+            <span class="brand__mark" aria-hidden="true">M</span>
+            <span class="brand__text">MENTORA</span>
+          </a>
+
+          <div class="sidebar__user">
+            <div class="avatar" aria-hidden="true">👤</div>
+            <div class="sidebar__userMeta">
+              <div id="navName" class="sidebar__name">Learner</div>
+              <div id="navEmail" class="sidebar__email muted">—</div>
+            </div>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <a class="nav__item is-active" href="#dashboard" data-view="dashboard">
+            <span class="nav__icon" aria-hidden="true">🏠</span> Dashboard
+          </a>
+          <a class="nav__item" href="#profile" data-view="profile">
+            <span class="nav__icon" aria-hidden="true">👤</span> Digital Profile
+          </a>
+          <a class="nav__item" href="#courses" data-view="courses">
+            <span class="nav__icon" aria-hidden="true">📘</span> Courses
+          </a>
+          <a class="nav__item" href="#practice" data-view="practice">
+            <span class="nav__icon" aria-hidden="true">✍</span> Practice
+          </a>
+          <a class="nav__item" href="#assessment" data-view="assessment">
+            <span class="nav__icon" aria-hidden="true">📝</span> Assessment
+          </a>
+          <a class="nav__item" href="#community" data-view="community">
+            <span class="nav__icon" aria-hidden="true">👥</span> Community &amp; Ranks
+          </a>
+          <a class="nav__item" href="#settings" data-view="settings">
+            <span class="nav__icon" aria-hidden="true">⚙</span> Settings
+          </a>
+        </nav>
+
+        <div class="sidebar__bottom">
+          <div class="pill">
+            <span class="pill__dot" aria-hidden="true"></span>
+            Demo mode • LocalStorage only
+          </div>
+        </div>
+      </aside>
+
+      <main class="content" id="content">
+        <header class="topbar">
+          <div class="topbar__left">
+            <button class="icon-btn" id="mobileMenuBtn" type="button" aria-label="Open menu">
+              ☰
+            </button>
+            <div>
+              <h1 id="pageTitle" class="page-title">Dashboard</h1>
+              <div id="pageSubtitle" class="page-subtitle muted">
+                Track your progress and keep your momentum.
+              </div>
+            </div>
+          </div>
+          <div class="topbar__right">
+            <div class="chip chip--soft" id="streakChip" title="Learning streak">
+              🔥 <span id="streakCount">0</span> day streak
+            </div>
+            <div class="chip chip--soft" id="xpChip" title="Experience points">
+              ✨ <span id="xpCount">0</span> XP
+            </div>
+            <button class="btn btn--ghost" id="quickThemeBtn" type="button" title="Toggle theme">
+              🌗 Theme
+            </button>
+          </div>
+        </header>
+
+        <!-- DASHBOARD -->
+        <section class="view is-active" id="view-dashboard" data-view>
+          <div class="grid grid--cards">
+            <article class="card card--hero">
+              <div class="card__body">
+                <div class="hero">
+                  <div>
+                    <div class="kicker">Welcome back</div>
+                    <h2 id="welcomeTitle">Learner</h2>
+                    <p class="muted" id="welcomeSubtitle">
+                      You’re building consistency — keep the streak alive.
+                    </p>
+                    <div class="row row--wrap row--gap mt-12">
+                      <button class="btn btn--primary" id="goCoursesBtn" type="button">
+                        Continue learning
+                      </button>
+                      <button class="btn btn--ghost" id="goPracticeBtn" type="button">
+                        Quick practice
+                      </button>
+                    </div>
+                  </div>
+                  <div class="hero__stats">
+                    <div class="metric">
+                      <div class="metric__label muted">Overall progress</div>
+                      <div class="metric__value"><span id="overallProgress">0</span>%</div>
+                      <div class="progress">
+                        <div class="progress__bar" id="overallProgressBar" style="width: 0%"></div>
+                      </div>
+                    </div>
+                    <div class="metric">
+                      <div class="metric__label muted">Rank</div>
+                      <div class="metric__value" id="rankName">Beginner</div>
+                      <div class="tiny muted" id="rankHint">Earn XP to level up.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card__body">
+                <div class="card__title">Learning streak</div>
+                <div class="big-number"><span id="dashStreak">0</span> days</div>
+                <p class="muted tiny">Study a little each day to maintain your streak.</p>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card__body">
+                <div class="card__title">Enrolled courses</div>
+                <div class="big-number"><span id="enrolledCount">0</span></div>
+                <p class="muted tiny">Pick one course and move it forward today.</p>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card__body">
+                <div class="card__title">Rank &amp; XP</div>
+                <div class="big-number"><span id="dashRankName">Beginner</span></div>
+                <p class="muted tiny">
+                  <strong><span id="dashXp">0</span> XP</strong> • Rank adjusts automatically as you learn.
+                </p>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card__body">
+                <div class="card__title">Upcoming reminder</div>
+                <div class="row row--between">
+                  <div>
+                    <div class="strong">Assessment</div>
+                    <div class="muted tiny">Today • 6:00 PM</div>
+                  </div>
+                  <span class="badge">Static</span>
+                </div>
+                <p class="muted tiny mt-10">
+                  Tip: Take it when you’re focused. Review wrong answers after.
+                </p>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card__body">
+                <div class="card__title">Motivational quote</div>
+                <blockquote class="quote" id="quoteBox">
+                  “Small steps every day add up to big results.”
+                </blockquote>
+                <div class="row row--between mt-10">
+                  <span class="muted tiny">MENTORA</span>
+                  <button class="btn btn--ghost btn--sm" id="newQuoteBtn" type="button">
+                    New quote
+                  </button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- PROFILE -->
+        <section class="view" id="view-profile" data-view>
+          <div class="grid grid--two">
+            <article class="card">
+              <div class="card__body">
+                <div class="card__title">Digital Profile</div>
+                <p class="muted tiny">
+                  Update your details — saved locally for this demo.
+                </p>
+
+                <form id="profileForm" class="form mt-12">
+                  <label class="field">
+                    <span>Name</span>
+                    <input id="profileName" type="text" placeholder="Your name" />
+                  </label>
+
+                  <label class="field">
+                    <span>Email</span>
+                    <input id="profileEmail" type="email" disabled />
+                  </label>
+
+                  <label class="field">
+                    <span>Learning goal</span>
+                    <input
+                      id="profileGoal"
+                      type="text"
+                      placeholder="e.g., Become job-ready in Frontend Development"
+                    />
+                  </label>
+
+                  <label class="field">
+                    <span>Skill level</span>
+                    <select id="profileLevel">
+                      <option>Beginner</option>
+                      <option>Intermediate</option>
+                      <option>Advanced</option>
+                    </select>
+                  </label>
+
+                  <div class="row row--gap">
+                    <button class="btn btn--primary" type="submit">Save profile</button>
+                    <button class="btn btn--ghost" type="button" id="profileResetBtn">
+                      Reset to defaults
+                    </button>
+                  </div>
+
+                  <div id="profileSaved" class="alert alert--success mt-12" hidden>
+                    Saved!
+                  </div>
+                </form>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card__body">
+                <div class="card__title">Your learning snapshot</div>
+                <div class="stat-list mt-10">
+                  <div class="stat">
+                    <div class="muted tiny">Streak</div>
+                    <div class="strong"><span id="profileStreak">0</span> days</div>
+                  </div>
+                  <div class="stat">
+                    <div class="muted tiny">Overall progress</div>
+                    <div class="strong"><span id="profileProgress">0</span>%</div>
+                  </div>
+                  <div class="stat">
+                    <div class="muted tiny">XP</div>
+                    <div class="strong"><span id="profileXp">0</span></div>
+                  </div>
+                  <div class="stat">
+                    <div class="muted tiny">Rank</div>
+                    <div class="strong" id="profileRank">Beginner</div>
+                  </div>
+                </div>
+                <div class="divider mt-14"></div>
+                <p class="muted tiny">
+                  This is a demo profile panel. In a real product, this would sync with your
+                  account and devices.
+                </p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- COURSES -->
+        <section class="view" id="view-courses" data-view>
+          <div class="grid grid--two">
+            <article class="card">
+              <div class="card__body">
+                <div class="row row--between row--gap">
+                  <div>
+                    <div class="card__title">Courses</div>
+                    <p class="muted tiny">Curated mock courses. Progress is saved locally.</p>
+                  </div>
+                  <div class="chip chip--soft">
+                    📚 <span id="courseCount">0</span> courses
+                  </div>
+                </div>
+
+                <div class="course-list mt-12" id="courseList"></div>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card__body">
+                <div class="row row--between row--gap">
+                  <div>
+                    <div class="card__title">Course player</div>
+                    <p class="muted tiny">Video placeholder, lesson content, and learning path.</p>
+                  </div>
+                  <span class="badge" id="courseBadge">Not started</span>
+                </div>
+
+                <div class="video mt-12" role="img" aria-label="Video placeholder">
+                  <div class="video__inner">
+                    <div class="video__title" id="coursePlayerTitle">Select a course</div>
+                    <div class="video__meta muted tiny">Video placeholder (demo)</div>
+                  </div>
+                </div>
+
+                <div class="lesson mt-12">
+                  <h3 id="courseLessonTitle">Lesson content</h3>
+                  <p class="muted" id="courseLessonBody">
+                    Choose a course from the left to view its lesson.
+                  </p>
+                </div>
+
+                <div class="row row--gap mt-12">
+                  <button class="btn btn--primary" id="lessonCompleteBtn" type="button" disabled>
+                    Mark lesson complete (+10%)
+                  </button>
+                  <button class="btn btn--ghost" id="addXpBtn" type="button" disabled>
+                    Earn XP (+25)
+                  </button>
+                </div>
+
+                <div class="mt-12">
+                  <div class="card__title">Learning path</div>
+                  <p class="muted tiny">
+                    Step-by-step roadmap for this course. Completion is saved in LocalStorage.
+                  </p>
+                  <div class="roadmap mt-12" id="courseRoadmapList"></div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- PRACTICE -->
+        <section class="view" id="view-practice" data-view>
+          <div class="grid grid--two">
+            <article class="card">
+              <div class="card__body">
+                <div class="card__title">MCQ Practice</div>
+                <p class="muted tiny">Instant feedback. XP is awarded for correct answers.</p>
+
+                <div id="mcqBox" class="mt-12"></div>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card__body">
+                <div class="row row--between row--gap">
+                  <div>
+                    <div class="card__title">Coding Practice (Demo)</div>
+                    <p class="muted tiny">
+                      Textarea editor only — no code execution (presentation demo).
+                    </p>
+                  </div>
+                  <select id="codingSelect" class="select">
+                    <option value="">Choose question…</option>
+                  </select>
+                </div>
+
+                <div class="coding mt-12">
+                  <div class="coding__q strong" id="codingQuestion">Select a question</div>
+                  <div class="coding__io mt-10">
+                    <div class="io">
+                      <div class="muted tiny">Sample Input</div>
+                      <pre id="codingInput" class="codebox">—</pre>
+                    </div>
+                    <div class="io">
+                      <div class="muted tiny">Sample Output</div>
+                      <pre id="codingOutput" class="codebox">—</pre>
+                    </div>
+                  </div>
+                  <label class="field mt-12">
+                    <span>Your code</span>
+                    <textarea
+                      id="codeEditor"
+                      class="code-editor"
+                      rows="10"
+                      placeholder="// Write your solution here..."
+                    ></textarea>
+                    <small class="hint">
+                      Tip: Use clear variable names and explain your steps (as comments).
+                    </small>
+                  </label>
+                  <div class="row row--gap">
+                    <button class="btn btn--primary" id="saveCodeBtn" type="button">
+                      Save draft
+                    </button>
+                    <button class="btn btn--ghost" id="clearCodeBtn" type="button">
+                      Clear
+                    </button>
+                  </div>
+                  <div id="codeSaved" class="alert alert--success mt-12" hidden>
+                    Draft saved locally.
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ASSESSMENT -->
+        <section class="view" id="view-assessment" data-view>
+          <article class="card">
+            <div class="card__body">
+              <div class="row row--between row--gap">
+                <div>
+                  <div class="card__title">Timed Assessment</div>
+                  <p class="muted tiny">
+                    MCQs only. Score shown instantly and saved locally.
+                  </p>
+                </div>
+                <div class="chip chip--soft" title="Timer">
+                  ⏱ <span id="timerText">—</span>
+                </div>
+              </div>
+
+              <div class="divider mt-14"></div>
+
+              <div class="row row--gap">
+                <button class="btn btn--primary" id="startAssessmentBtn" type="button">
+                  Start assessment
+                </button>
+                <button class="btn btn--ghost" id="resetAssessmentBtn" type="button">
+                  Reset
+                </button>
+                <div class="muted tiny" id="lastScoreText"></div>
+              </div>
+
+              <div id="assessmentBox" class="mt-14"></div>
+              <div id="assessmentResult" class="mt-14" hidden></div>
+            </div>
+          </article>
+        </section>
+
+        <!-- COMMUNITY & RANKS -->
+        <section class="view" id="view-community" data-view>
+          <div class="grid grid--two">
+            <article class="card">
+              <div class="card__body">
+                <div class="card__title">Community (Demo)</div>
+                <p class="muted tiny">
+                  Static posts with like/comment UI (stored locally for feel).
+                </p>
+                <div id="communityList" class="community mt-12"></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card__body">
+                <div class="card__title">Community guidelines</div>
+                <ul class="muted tiny mt-10">
+                  <li>Be kind and specific.</li>
+                  <li>Share resources with context.</li>
+                  <li>Ask good questions: goal + what you tried + what happened.</li>
+                </ul>
+                <div class="divider mt-14"></div>
+                <p class="muted tiny">
+                  In a real app, posts, likes, and comments would be synced to a backend.
+                </p>
+              </div>
+            </article>
+          </div>
+          <div class="grid grid--two mt-12">
+            <article class="card">
+              <div class="card__body">
+                <div class="card__title">Your rank</div>
+                <div class="rank-card mt-10">
+                  <div class="rank-card__left">
+                    <div class="kicker">Current level</div>
+                    <div class="rank-name" id="rankPanelName">Beginner</div>
+                    <div class="muted tiny" id="rankPanelHint">Earn XP to reach the next level.</div>
+                  </div>
+                  <div class="rank-card__right">
+                    <div class="chip chip--soft">✨ <span id="rankPanelXp">0</span> XP</div>
+                    <div class="progress mt-10">
+                      <div class="progress__bar" id="rankProgressBar" style="width: 0%"></div>
+                    </div>
+                    <div class="muted tiny mt-8" id="rankProgressText">0% to next level</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card__body">
+                <div class="row row--between row--gap">
+                  <div>
+                    <div class="card__title">Leaderboard</div>
+                    <p class="muted tiny">Static users + you (sorted by XP).</p>
+                  </div>
+                  <span class="badge">Demo</span>
+                </div>
+                <div class="leaderboard mt-12" id="leaderboard"></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- SETTINGS -->
+        <section class="view" id="view-settings" data-view>
+          <div class="grid grid--two">
+            <article class="card">
+              <div class="card__body">
+                <div class="card__title">Appearance</div>
+                <p class="muted tiny">Auto theme supported (system preference).</p>
+
+                <div class="setting mt-12">
+                  <div>
+                    <div class="strong">Theme</div>
+                    <div class="muted tiny">Light / Dark / Auto</div>
+                  </div>
+                  <select id="themeSelect" class="select">
+                    <option value="auto">Auto</option>
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                  </select>
+                </div>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card__body">
+                <div class="card__title">Account & Data</div>
+                <div class="setting mt-12">
+                  <div>
+                    <div class="strong">Edit profile</div>
+                    <div class="muted tiny">Jump to profile page</div>
+                  </div>
+                  <button class="btn btn--ghost" id="editProfileShortcut" type="button">
+                    Open
+                  </button>
+                </div>
+
+                <div class="setting mt-12">
+                  <div>
+                    <div class="strong">Reset progress</div>
+                    <div class="muted tiny">Courses, roadmap, quiz score, drafts</div>
+                  </div>
+                  <button class="btn btn--danger" id="resetProgressBtn" type="button">
+                    Reset
+                  </button>
+                </div>
+
+                <div class="setting mt-12">
+                  <div>
+                    <div class="strong">Logout</div>
+                    <div class="muted tiny">Clears LocalStorage</div>
+                  </div>
+                  <button class="btn btn--ghost" id="logoutBtn2" type="button">Logout</button>
+                </div>
+
+                <div id="settingsMsg" class="alert alert--success mt-12" hidden></div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+      <!-- Floating chatbot widget (available on every page) -->
+      <button
+        class="chat-fab"
+        id="chatToggleBtn"
+        type="button"
+        aria-label="Open MENTORA chat"
+      >
+        🤖
+      </button>
+      <div class="chat-popup" id="chatPopup" aria-label="MENTORA chat" aria-hidden="true">
+        <div class="chat-popup__card card">
+          <div class="card__body">
+            <div class="row row--between row--gap">
+              <div>
+                <div class="card__title">MENTORA AI Chatbot (Demo)</div>
+                <p class="muted tiny">
+                  Keyword-based replies with typing effect. No APIs.
+                </p>
+              </div>
+              <button
+                class="icon-btn chat-popup__close"
+                id="chatCloseBtn"
+                type="button"
+                aria-label="Close chat"
+              >
+                ✕
+              </button>
+            </div>
+            <div class="chat mt-12">
+              <div class="chat__log" id="chatLog" aria-live="polite"></div>
+              <form class="chat__input" id="chatForm">
+                <input
+                  id="chatText"
+                  type="text"
+                  placeholder="Ask me about learning plans, streaks, or courses…"
+                  autocomplete="off"
+                  required
+                />
+                <button class="btn btn--primary" type="submit">Send</button>
+              </form>
+            </div>
+            <div class="prompt-grid mt-12">
+              <button class="prompt" type="button" data-prompt="Make me a study plan">
+                Make me a study plan
+              </button>
+              <button class="prompt" type="button" data-prompt="How do I keep my streak?">
+                How do I keep my streak?
+              </button>
+              <button class="prompt" type="button" data-prompt="Recommend a course">
+                Recommend a course
+              </button>
+              <button class="prompt" type="button" data-prompt="Motivate me">
+                Motivate me
+              </button>
+              <button class="prompt" type="button" data-prompt="I feel stuck">
+                I feel stuck
+              </button>
+              <button class="prompt" type="button" data-prompt="Explain roadmap">
+                Explain roadmap
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MENTORA — Login</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="auth-page">
+    <div class="auth-shell">
+      <aside class="auth-brand">
+        <div class="brand-mark" aria-hidden="true">M</div>
+        <div class="brand-copy">
+          <h1>MENTORA</h1>
+          <p class="muted">
+            Online Learning Companion App — a frontend-only demo for college students and
+            self‑learners.
+          </p>
+          <ul class="auth-bullets">
+            <li>Curated courses, streaks, and progress</li>
+            <li>Practice (MCQs + coding prompts)</li>
+            <li>Assessments, roadmap, ranks, and demo AI chat</li>
+          </ul>
+        </div>
+      </aside>
+
+      <main class="auth-card">
+        <div class="auth-card__header">
+          <h2>Welcome back</h2>
+          <p class="muted">Login to continue your learning journey.</p>
+        </div>
+
+        <form id="loginForm" class="form" novalidate>
+          <label class="field">
+            <span>Email</span>
+            <input
+              id="loginEmail"
+              name="email"
+              type="email"
+              autocomplete="email"
+              placeholder="you@college.edu"
+              required
+            />
+            <small class="hint">Any valid-looking email works (demo).</small>
+          </label>
+
+          <label class="field">
+            <span>Password</span>
+            <input
+              id="loginPassword"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="••••••••"
+              minlength="6"
+              required
+            />
+            <small class="hint">Any password with 6+ characters works (demo).</small>
+          </label>
+
+          <div class="row row--between row--gap">
+            <label class="chip">
+              <input id="rememberMe" type="checkbox" checked />
+              <span>Remember me</span>
+            </label>
+            <button class="link-btn" type="button" id="fillDemoBtn">Use demo user</button>
+          </div>
+
+          <div id="loginError" class="alert alert--error" role="alert" hidden></div>
+
+          <button class="btn btn--primary" type="submit">Login</button>
+          <p class="tiny muted">
+            This is a presentation demo. No backend, no real authentication. State is stored in
+            LocalStorage.
+          </p>
+        </form>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
